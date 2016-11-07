@@ -27,6 +27,18 @@ function saveUser (username, data) {
   fs.writeFileSync(fp, JSON.stringify(data, null, 2), {encoding: 'utf8'});
 }
 
+function verifyUser (req, res, next) {
+  const fp = getUserFilePath(req.params.username);
+
+  fs.exists(fp, (yes) => {
+    if (yes) {
+      next();
+    } else {
+      res.redirect(`/error/${req.params.username}`);
+    }
+  });
+}
+
 app.engine('hbs', engines.handlebars)
 
 app.set('views', './views');
@@ -35,7 +47,7 @@ app.set('view engine', 'hbs');
 app.use('/profilepics', express.static('images'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/favicon.ico', function (req, res) {
+app.get('/favicon.ico', (req, res) => {
   res.end();
 })
 
@@ -55,7 +67,26 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/:username', (req, res) => {
+app.get('*.json', (req, res) => {
+  res.download(`./users/${req.path}`, 'virus.exe');
+})
+
+app.get('/data/:username', verifyUser, (req, res) => {
+  const username = req.params.username;
+  const user = getUser(username);
+  res.json(user);
+})
+
+app.get('/error/:username', (req, res) => {
+  res.status(404).send(`No user named ${req.params.username} found`);
+})
+
+app.all('/:username', (req, res, next) => {
+  console.log(req.method, 'for', req.params.username);
+  next();
+})
+
+app.get('/:username', verifyUser, (req, res) => {
   const username = req.params.username;
   const user = getUser(username);
   res.render('user', {
