@@ -1,0 +1,36 @@
+{
+  "name": "learning_node",
+  "version": "1.0.0",
+  "description": "Just learning node",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RafaelAmaral/learning_node.git"
+  },
+  "keywords": [
+    "node",
+    "js",
+    "node.js",
+    "nodejs",
+    "express",
+    "js",
+    "express.js"
+  ],
+  "author": "Rafael Amaral <rafaelbruno86@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RafaelAmaral/learning_node/issues"
+  },
+  "homepage": "https://github.com/RafaelAmaral/learning_node#readme",
+  "dependencies": {
+    "consolidate": "^0.14.1",
+    "express": "^4.14.0",
+    "handlebars": "^4.0.5",
+    "jade": "^1.11.0",
+    "lodash": "^4.16.6"
+  },
+  "devDependencies": {}
+}
