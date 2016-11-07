@@ -4,7 +4,8 @@
   "description": "Just learning node",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -26,11 +27,13 @@
   },
   "homepage": "https://github.com/RafaelAmaral/learning_node#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "consolidate": "^0.14.1",
     "express": "^4.14.0",
     "handlebars": "^4.0.5",
-    "jade": "^1.11.0",
     "lodash": "^4.16.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
 }
